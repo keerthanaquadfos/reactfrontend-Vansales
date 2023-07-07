@@ -48,13 +48,13 @@ function Navbar() {
             <div className="dropdown-divider" />
           </li>
           <li>
-            <a className="dropdown-item" href="/">
+            <a className="dropdown-item" href="/#">
               <i className="bx bx-user me-2" />
               <span className="align-middle">My Profile</span>
             </a>
           </li>
           <li>
-            <a className="dropdown-item" href="/">
+            <a className="dropdown-item" href="/#">
               <i className="bx bx-cog me-2" />
               <span className="align-middle">Settings</span>
             </a>
