@@ -293,8 +293,8 @@ const Users = () => {
         onChange={(e)=>setPassword(e.target.value)}
         labelText={'Password'} name={password} placeholder={'Password'} value={password}/>  
           <SelectDropDown hintText={'User Role'} options={roles} defautlValue={roleId} value={roleId} onChange={(e)=>setRoleId(e.target.value)}/>
-          <SelectDropDown hintText={'User Department'} options={departments} defautlValue={departmentId} value={departmentId} onChange={(e)=>setRoleId(e.target.value)}/>
-         <SelectDropDown hintText={'User Designation'} options={designationList} defautlValue={designationId} value={designationId} onChange={(e)=>setRoleId(e.target.value)}/>
+          <SelectDropDown hintText={'User Department'} options={departments} defautlValue={departmentId} value={departmentId} onChange={(e)=>setDepartmentId(e.target.value)}/>
+         <SelectDropDown hintText={'User Designation'} options={designationList} defautlValue={designationId} value={designationId} onChange={(e)=>setDesignationId(e.target.value)}/>
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn btn-sm btn-primary" buttonText={'Save'} handleClick={()=>handleSave()}>

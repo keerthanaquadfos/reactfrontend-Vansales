@@ -102,7 +102,9 @@ const Product = () => {
         return;
       }
       setLoading(true);     
-      var json ={id:itemId, code:code, name:name, categoryId:catId,subCategoryId:subCatId, price:price,taxPercentage:tax,description:description??""}
+      
+      var json ={id:itemId, code:code, name:name, categoryId:catId,subCategoryId:subCatId, 
+        price:price,taxPercentage:tax,description:description??"", companyId:localStorage.getItem('companyId')}
       const {data} = itemId>0 ?  await API.put('/product/'+itemId, json)   : await API.post('/product', json)       
       if(data.status){           
          toast.success(data.msg);  
