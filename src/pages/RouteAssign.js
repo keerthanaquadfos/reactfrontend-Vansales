@@ -7,19 +7,19 @@ import {Link} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from '../components/shared/form/Button'
 import SelectDropDown from '../components/shared/form/SelectDropDown';
+import {useNavigate} from 'react-router-dom';
 const RouteAssign = () => {
-
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);  
   const [delShow, setDelShow] = useState(false);   
-  const [itemId, setitemId] = useState(0);
-  const [shopId, setShopId] = useState(0);
+  const [itemId, setitemId] = useState(0); 
   const [vanId, setVanId] = useState(0);
   const [userId, setUserId] = useState(0);
   const [routeId, setRouteId] = useState(0);
   const [compantyId, setCompanyId] = useState(0);
   const [users, setUSer] = useState([]);
   const [assigns, setAssings] = useState([]);
-  const [shops, setShops] = useState([]);
+  const [routes, setRoutes] = useState([]);
   const [van, setVan] = useState([]);
   const [loading, setLoading] = useState(false);
   const modalClose = () => setShow(false);  
@@ -46,13 +46,44 @@ const RouteAssign = () => {
     }
   }
 
+  
   const getUsers = async ()=> {
     try{
         setLoading(true);     
         var id =localStorage.getItem("companyId");
         const {data} = await API.get(`/user/company/${id}`, null)  
         if(data.status){  
+            if(data.value.length<=0){
+              toast.warning('Please add users first!');
+              navigate('/users');
+              return;
+            }
             setUSer(data.value); 
+        } else{
+            toast.error(data.msg); 
+        }
+        return data;
+    }catch(error){
+          console.log(error);
+           
+    }finally{
+      setLoading(false);   
+    }
+  }
+
+
+  const getRoutes = async ()=> {
+    try{
+        setLoading(true);     
+        var id =localStorage.getItem("companyId");
+        const {data} = await API.get(`/route/company/${id}`, null)  
+        if(data.status){  
+          if(data.value.length<0){
+            toast.warning('Please add routes first!');
+            navigate('/shop-route');
+            return;
+          }
+            setRoutes(data.value); 
         } else{
             toast.error(data.msg); 
         }
@@ -71,6 +102,11 @@ const RouteAssign = () => {
         var id =localStorage.getItem("companyId");
         const {data} = await API.get(`/van/company/${id}`, null)  
         if(data.status){  
+          if(data.value.length<0){
+            toast.warning('Please add vans first!');
+            navigate('/shop-route');
+            return;
+          }
             setVan(data.value); 
         } else{
             toast.error(data.msg); 
@@ -83,43 +119,20 @@ const RouteAssign = () => {
       setLoading(false);   
     }
   }
-
-  const getShops = async ()=> {
-    try{
-        setLoading(true);     
-        var id =localStorage.getItem("companyId");
-        const {data} = await API.get(`/shop/company/${id}`, null)  
-        if(data.status){  
-            setShops(data.value); 
-        } else{
-            toast.error(data.msg); 
-        }
-        return data;
-    }catch(error){
-          console.log(error);
-           
-    }finally{
-      setLoading(false);   
-    }
-  }
-
+ 
 
   const setItemToEdit = (itemd)=>{
     if(itemd.id>0){
      setVanId(itemd.vanId); 
      setitemId(itemd.id); 
-     setShopId(itemd.shopId);
+     setRouteId(itemd.routeId);
      setUserId(localStorage.getItem('userId'));
-     setCompanyId(localStorage.getItem('companyId'));
-     var rid = shops.find(x=>x.id===itemd.shopId).routeId;
-     setRouteId(rid);
+     setCompanyId(localStorage.getItem('companyId'));  
     }else{
-      setVanId(van[0].id);  
-      setShopId(shops[0].id);
+      setVanId(van[0].id);   
+      setRouteId(routes[0].id);
       setUserId(localStorage.getItem('userId'));
-      setCompanyId(localStorage.getItem('companyId'));
-      var rteId = shops[0].routeId;
-      setRouteId(rteId);
+      setCompanyId(localStorage.getItem('companyId'));  
     }
   }
 
@@ -147,7 +160,7 @@ const RouteAssign = () => {
       if(vanId<0){
         toast.warning("Select Van");
         return;
-      }else if(shopId<0){
+      }else if(routeId<0){
         toast.warning("Select Shop");
         return;
       }else if(userId<0){
@@ -155,7 +168,7 @@ const RouteAssign = () => {
         return;
       }
       setLoading(true);      
-      var req ={vanId:vanId, shopId:shopId,companyId:compantyId, routeId: routeId, userId: userId};
+      var req ={vanId:vanId, companyId:compantyId, routeId: routeId, userId: userId};
       const {data} = itemId>0 ?  await API.put('/route-info/'+itemId, req)   : await API.post('/route-info', req) 
       console.log(data);
       if(data.status){  
@@ -178,7 +191,7 @@ const RouteAssign = () => {
     getAssigns();
     getUsers();
    getVans();
-   getShops();
+   getRoutes();
   },[])
 
   const handleSave = ()=>{
@@ -200,8 +213,7 @@ const RouteAssign = () => {
                 <div className="table-responsive text-nowrap">
                 <table className="table">
             <thead>
-                <tr>    
-                  <td>Shop</td>   
+                <tr>       
                   <td>Route</td>
                   <td>van</td>   
                   <td>User</td>   
@@ -211,9 +223,8 @@ const RouteAssign = () => {
             <tbody className="table-border-bottom-0"> 
                 { assigns ?
                 assigns.map((data,index) => {
-                        return(<tr key={data.id}>  
-                           <td>{data.shop.name}</td>
-                           <td>{data.shop.route.name}</td>
+                        return(<tr key={data.id}>   
+                           <td>{data.route.name}</td>
                            <td>{data.van.name}</td>
                            <td>{data.useraccount.name}</td>
                             <td>
@@ -236,7 +247,7 @@ const RouteAssign = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
-           <SelectDropDown  defautlValue={shopId} options={shops} value={shopId} onChange={(e)=>setShopId(e.target.value)} hintText={'Select Shop'}/>
+           <SelectDropDown  defautlValue={routeId} options={routes} value={routeId} onChange={(e)=>setRouteId(e.target.value)} hintText={'Select Route'}/>
            <SelectDropDown  defautlValue={vanId} options={van} value={vanId} onChange={(e)=>setVanId(e.target.value)} hintText={'Select Van'}/> 
            <SelectDropDown  defautlValue={userId} options={users} value={userId} onChange={(e)=>setUserId(e.target.value)} hintText={'Select User'}/> 
         </Modal.Body>

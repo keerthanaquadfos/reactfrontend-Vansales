@@ -37,14 +37,14 @@ const Users = () => {
         setLoading(true);     
         const {data} = await API.get('/general/departments', null)  
         if(data.status){  
-            var filterd = data.value.fiter(x=>x.id>1);  
-            if(filterd.length<=2){
-              toast.warning('Please add department first!');
-              navigate('/department');
-              return;
-            } else{         
-              setDepartments(filterd); 
-              setDepartmentId(filterd[0].id);
+          if( data.value.length<=0){
+            toast.warning('Please add department first!');
+            navigate('/department');
+            return;
+          }
+            else{         
+              setDepartments(data.value); 
+              setDepartmentId(data.value[0].id);
             }
         } else{
             toast.error(data.msg); 
@@ -62,12 +62,12 @@ const Users = () => {
         setLoading(true);     
         const {data} = await API.get('/general/designations', null)  
         if(data.status){  
-          var filterd = data.value.fiter(x=>x.id>1);  
-            if(filterd.length<=2){
-              toast.warning('Please add designation first!');
-              navigate('/designation');
-              return;
-            } else{         
+          if( data.value.length<=0){
+            toast.warning('Please add designation first!');
+            navigate('/designation');
+            return;
+          }
+          else{         
               setDesignationId(data.value[0].id); 
             setDesignationList(data.value); 
             }         
