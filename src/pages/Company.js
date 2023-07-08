@@ -16,6 +16,7 @@ const Company = () => {
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [oldEmail, setOldEmail] = useState("");
   const [provinceId, setProvinceId] = useState("");
   const [maxUsers, setMaxUsers] = useState(10);
   const [itemId, setitemId] = useState(0);
@@ -65,6 +66,7 @@ const Company = () => {
 
   const setItemToEdit = (itemd)=>{
      if(itemd.id>0){
+        setOldEmail(itemd.email);
         setName(itemd.name); 
         setitemId(itemd.id);
         setProvinceId(itemd.provinceId);
@@ -108,8 +110,9 @@ const Company = () => {
         toast.warning("Name required");
         return;
       }
+      debugger;
       setLoading(true);     
-      var reqData = {name:name, address:address,email:email,provinceId:provinceId,contact:contact,maxUsers:maxUsers, password:password};
+      var reqData = {name:name, address:address,email:email,provinceId:provinceId,contact:contact,maxUsers:maxUsers, password:password, oldEmail:oldEmail};
       const {data} = itemId>0 ?  await API.put('/company/'+itemId, reqData)   : await API.post('/company', reqData) 
       console.log(data);
       if(data.status){  
@@ -196,12 +199,7 @@ const Company = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
-        <div className="mb-3">
-            <label htmlFor='provinceId' className="form-label"> Province</label>
-        <select defaultValue={provinceId} value={provinceId} className='form-control mb-3' onChange={(e)=>setProvinceId(e.target.value)}>
-        {provinces ? provinces.map((data,index) => (<><option value={data.id}>{data.name}</option></>)) : <><option value={0}>No data available</option></>}
-        </select>
-        </div>
+        
            <InputType className={'form-control'} inputType={'text'} labelFor={'name'} 
           onChange={(e)=>setName(e.target.value)}
           labelText={'Company Name'} name={name} placeholder={'Company Name'} value={name}/>
@@ -213,6 +211,13 @@ const Company = () => {
         <InputType className={'form-control'} inputType={'text'} labelFor={'contact'} 
           onChange={(e)=>setContact(e.target.value)}
           labelText={'Contact'}  placeholder={'Contact'} value={contact}/>
+
+        <div className="mb-3">
+            <label htmlFor='provinceId' className="form-label"> Province</label>
+        <select defaultValue={provinceId} value={provinceId} className='form-control mb-3' onChange={(e)=>setProvinceId(e.target.value)}>
+        {provinces ? provinces.map((data,index) => (<><option value={data.id}>{data.name}</option></>)) : <><option value={0}>No data available</option></>}
+        </select>
+        </div>
 
         <InputType className={'form-control'} inputType={'text'} labelFor={'email'} 
           onChange={(e)=>setEmail(e.target.value)}

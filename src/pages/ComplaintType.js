@@ -107,7 +107,7 @@ const ComplaintType = () => {
       loading ? <Spinner/> : (
      <Layout>
      <div className="card">
-                <h5 className="card-header"><i className="bx bx-plus-circle me-2" style={{cursor:'pointer'}} onClick={()=>modalShow({id:0})}></i>Complaint Type</h5>
+                <h5 className="card-header"><i className="bx bx-plus-circle me-2" style={{cursor:'pointer'}} ></i>Complaint Type</h5>
                 <div className="table-responsive text-nowrap">
                 <table className="table">
             <thead>

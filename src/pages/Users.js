@@ -289,7 +289,7 @@ const Users = () => {
         <InputType className={'form-control'} inputType={'email'} labelFor={'email'} 
         onChange={(e)=>setEmail(e.target.value)}
         labelText={'Email'} name={email} placeholder={'Email'} value={email}/>
-        <InputType className={'form-control'} inputType={'text'} labelFor={'name'} 
+        <InputType className={'form-control'} inputType={'text'} labelFor={'password'} 
         onChange={(e)=>setPassword(e.target.value)}
         labelText={'Password'} name={password} placeholder={'Password'} value={password}/>  
           <SelectDropDown hintText={'User Role'} options={roles} defautlValue={roleId} value={roleId} onChange={(e)=>setRoleId(e.target.value)}/>

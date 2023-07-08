@@ -22,8 +22,9 @@ const Category = () => {
   const modelDeleteShow = (id) =>{ setDelShow(true); setitemId(id)  }
   const getCategories = async ()=> {
     try{
-        setLoading(true);     
-        const {data} = await API.get('/category', null) 
+        setLoading(true);
+        const id = localStorage.getItem('companyId');
+        const {data} = await API.get(`/category/companyId${id}`, null) 
         console.log(data);
         if(data.status){  
            setCategories(data.value); 
@@ -48,9 +49,10 @@ const Category = () => {
         toast.warning("Category name required");
         return;
       }
-      setLoading(true);     
-      const {data} = itemId>0 ?  await API.put('/category/'+itemId, {code:code, name:name})   : await API.post('/category', {code:code, name:name}) 
-      console.log(data);
+      setLoading(true);   
+      const id = localStorage.getItem('companyId');
+      const req = {code:code, name:name , companyId:id};
+      const {data} = itemId>0 ?  await API.put('/category/'+itemId,req)   : await API.post('/category', req)  
       if(data.status){  
          getCategories();
          toast.success(data.msg);  

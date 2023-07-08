@@ -112,7 +112,7 @@ const Complaint = () => {
       loading ? <Spinner/> : (
      <Layout>
      <div className="card">
-                <h5 className="card-header"><i className="bx bx-plus-circle me-2" style={{cursor:'pointer'}} ></i>Complaints</h5>
+                <h5 className="card-header">Complaints</h5>
                 <div className="table-responsive text-nowrap">
                 <table className="table">
             <thead>

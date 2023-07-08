@@ -29,8 +29,9 @@ const Product = () => {
   const modelDeleteShow = (id) =>{ setDelShow(true); setitemId(id)  }
   const getProducts = async ()=> {
     try{
-        setLoading(true);     
-        const {data} = await API.get('/product', null)  
+        setLoading(true);    
+        const id  = localStorage.getItem('companyId');
+        const {data} = await API.get(`/product/company/${id}`, null)  
         if(data.status){  
            setProducts(data.value);   
         } else{
@@ -46,8 +47,9 @@ const Product = () => {
   }
   const getCategories = async ()=> {
     try{
-        setLoading(true);     
-        const {data} = await API.get('/category', null)  
+        setLoading(true);
+        const id  = localStorage.getItem('companyId');
+        const {data} = await API.get(`/category/company/${id}`, null)  
         if(data.status){  
            setCategories(data.value);  
            setCatId(data.value[0].id)
@@ -65,7 +67,8 @@ const Product = () => {
   const getSubCategories = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/subcategory', null)  
+        const id  = localStorage.getItem('companyId');
+        const {data} = await API.get(`/subcategory/company/${id}`, null)  
         if(data.status){  
             setSubCategories(data.value); 
         } else{

@@ -12,8 +12,8 @@ const SubCategory = () => {
      
   const [show, setShow] = useState(false);  
   const [delShow, setDelShow] = useState(false);  
-  const [code, setCode] = useState(null);
-  const [name, setName] = useState(null);
+  const [code, setCode] = useState("");
+  const [name, setName] = useState("");
   const [itemId, setitemId] = useState(0);
   const [catId, setCatId] = useState(0);
   const [categories, setCategories] = useState(null);
@@ -26,7 +26,8 @@ const SubCategory = () => {
   const getCategories = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/category', null)  
+        const id =localStorage.getItem('companyId');
+        const {data} = await API.get(`/category/company/${id}`, null);
         if(data.status){  
            setCategories(data.value);  
            setCatId(data.value[0].id)
@@ -44,7 +45,8 @@ const SubCategory = () => {
   const getSubCategories = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/subcategory', null)  
+        const id =localStorage.getItem('companyId');
+        const {data} = await API.get(`/subcategory/companyId/${id}`, null)  
         if(data.status){  
             setSubCategories(data.value); 
         } else{
@@ -61,10 +63,10 @@ const SubCategory = () => {
 
   const postCategory = async () =>{
     try{
-      if(!code){
+      if(code.length<=0){
         toast.warning("Sub Category code required");
         return;
-      }else  if(!name){
+      }else  if(name.length<=0){
         toast.warning("Sub Category name required");
         return;
        
@@ -72,8 +74,9 @@ const SubCategory = () => {
         toast.warning("Category name required");
         return;
       }
-      setLoading(true);     
-      const {data} = itemId>0 ?  await API.put('/subcategory/'+itemId, {code:code, name:name, categoryId:catId})   : await API.post('/subcategory', {code:code, name:name,categoryId:catId})       
+      setLoading(true);
+      const id =localStorage.getItem('companyId');  
+      const {data} = itemId>0 ?  await API.put('/subcategory/'+itemId, {code:code, name:name, categoryId:catId,companyId:id})   : await API.post('/subcategory', {companyId:id,code:code, name:name,categoryId:catId})       
       if(data.status){           
          toast.success(data.msg);  
          getSubCategories() ;

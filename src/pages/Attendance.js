@@ -112,7 +112,7 @@ const Attendance = () => {
       loading ? <Spinner/> : (
      <Layout>
      <div className="card">
-                <h5 className="card-header"><i className="bx bx-plus-circle me-2" style={{cursor:'pointer'}}></i>Attendance</h5>
+                <h5 className="card-header">Attendance</h5>
                 <div className="table-responsive text-nowrap">
                 <table className="table">
             <thead>
@@ -122,6 +122,8 @@ const Attendance = () => {
                   <td>Check Out</td>    
                   <td>In Location</td>   
                   <td>Out Location</td>   
+                  <td>Starting Meter</td>   
+                  <td>Ending Meter</td>  
                 </tr> 
             </thead>
             <tbody className="table-border-bottom-0"> 
@@ -133,6 +135,8 @@ const Attendance = () => {
                            <td>{ data.checkOut!=null ? new Date(data.checkIn).toLocaleDateString() : "Not available"}</td>
                            <td>{data.checkinLat}, {data.checkinLong}</td> 
                            <td>{ data.checkOut!=null ? (data.checkOutLat , data.checkOutLong) : 'Not available' }</td> 
+                           <td>{data.odmeter !=null ? data.odmeter : 'Not Available'}</td>
+                           <td>{data.odmeterEnd  !=null ? data.odmeterEnd : 'Not Available'}</td>
                         </tr>) 
                     })  : null
                 }
