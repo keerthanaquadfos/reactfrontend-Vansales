@@ -64,6 +64,7 @@ function AdminSidebar() {
     <li className="menu-header small text-uppercase">
       <span className="menu-header-text">Sales</span>
     </li>
+    
     <li className="menu-item">
       <a href="/orders" className="menu-link">
         <i className="menu-icon tf-icons bx bx-home-circle" />
@@ -76,7 +77,12 @@ function AdminSidebar() {
         <div data-i18n="Analytics">Sales</div>
       </a>
     </li> 
-     
+    <li className="menu-item">
+      <a href="/purchase-return" className="menu-link">
+        <i className="menu-icon tf-icons bx bx-home-circle" />
+        <div data-i18n="Analytics">Purchase Return</div>
+      </a>
+    </li> 
     <li className="menu-item">
       <a href="/van-stock" className="menu-link">
         <i className="menu-icon tf-icons bx bx-home-circle" />

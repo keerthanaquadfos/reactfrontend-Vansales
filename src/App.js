@@ -26,6 +26,7 @@ import Invoice from './pages/Invoice';
 import Country from './pages/Country';
 import Province from './pages/Province';
 import RouteAssign from './pages/RouteAssign';
+import PurchaseReturn from './pages/PurchaseReturn';
 function App() {
  
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="/van-stock"  element={<AdminRoute><VanStock/></AdminRoute>} /> 
           <Route path="/orders"  element={<AdminRoute><Orders/></AdminRoute>} />
           <Route path="/invoice"  element={<AdminRoute><Invoice/></AdminRoute>} />
+          <Route path="/purchase-return"  element={<AdminRoute><PurchaseReturn/></AdminRoute>} />
           <Route path="/users"  element={<AdminRoute><Users/></AdminRoute>} />
           <Route path="/department"  element={<AdminRoute><Department/></AdminRoute>} />
           <Route path="/designation"  element={<AdminRoute><Designation/></AdminRoute>} />
