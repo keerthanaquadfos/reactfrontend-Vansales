@@ -24,7 +24,7 @@ const Category = () => {
     try{
         setLoading(true);
         const id = localStorage.getItem('companyId');
-        const {data} = await API.get(`/category/companyId${id}`, null) 
+        const {data} = await API.get(`/category/companyId/${id}`, null) 
         console.log(data);
         if(data.status){  
            setCategories(data.value); 
