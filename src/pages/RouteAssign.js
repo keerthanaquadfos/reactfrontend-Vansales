@@ -126,12 +126,12 @@ const RouteAssign = () => {
      setVanId(itemd.vanId); 
      setitemId(itemd.id); 
      setRouteId(itemd.routeId);
-     setUserId(localStorage.getItem('userId'));
+     setUserId(itemd.userId);
      setCompanyId(localStorage.getItem('companyId'));  
     }else{
       setVanId(van[0].id);   
       setRouteId(routes[0].id);
-      setUserId(localStorage.getItem('userId'));
+      setUserId(itemd.userId);
       setCompanyId(localStorage.getItem('companyId'));  
     }
   }
