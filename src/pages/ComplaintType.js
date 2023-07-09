@@ -46,7 +46,8 @@ const ComplaintType = () => {
       setLoading(true);     
       const {data} = itemId>0 ?  await API.put('/complaint-type/'+itemId, { name:name})   : await API.post('/complaint-type', {name:name}) 
       console.log(data);
-      if(data.status){  
+      if(data.status){
+        setName(null);
         getCompaintTypes();
          toast.success(data.msg);  
          setitemId(0);

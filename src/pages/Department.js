@@ -74,6 +74,7 @@ const Department = () => {
       const {data} = itemId>0 ?  await API.put('/department/'+itemId, { name:name,companyId})   : await API.post('/department', {name:name,companyId}) 
       console.log(data);
       if(data.status){  
+        setName(null);
          getDepartments();
          toast.success(data.msg);  
          setitemId(0);

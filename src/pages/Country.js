@@ -52,6 +52,8 @@ const Country = () => {
       const {data} = itemId>0 ?  await API.put('/country/'+itemId, {code:code, name:name})   : await API.post('/country', {code:code, name:name}) 
       console.log(data);
       if(data.status){  
+        setCode(null);
+        setName(null);
         getCountries();
          toast.success(data.msg);  
          setitemId(0);
@@ -77,6 +79,7 @@ const Country = () => {
       const {data} = await API.delete('/country/'+itemId) 
       console.log(data);
       if(data.status){  
+      
         toast.success(data.msg); 
         setitemId(0);
         getCountries();

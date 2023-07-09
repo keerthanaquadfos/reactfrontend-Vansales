@@ -78,7 +78,9 @@ const SubCategory = () => {
       const id =localStorage.getItem('companyId');  
       const {data} = itemId>0 ?  await API.put('/subcategory/'+itemId, {code:code, name:name, categoryId:catId,companyId:id})   : await API.post('/subcategory', {companyId:id,code:code, name:name,categoryId:catId})       
       if(data.status){           
-         toast.success(data.msg);  
+         toast.success(data.msg); 
+         setCode("");
+         setName(""); 
          getSubCategories() ;
          setitemId(0);
       } else{

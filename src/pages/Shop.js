@@ -119,7 +119,12 @@ const Shop = () => {
       const reqData = {code:code, name:name, contact:contact,email:email,address:address, companyId:companyId,trn:trn, provinceId:provinceId,billTypeId:bilTypeId, routeId:routeId};
       const {data} = itemId>0 ?  await API.put('/shop/'+itemId, reqData) : await API.post('/shop', reqData) 
       console.log(data);
-      if(data.status){  
+      if(data.status){
+        setCode(null);
+        setName(null);
+        setAddress(null);
+        setEmail(null);
+        setContact(null);
          getShops();
          toast.success(data.msg);  
          setitemId(0);

@@ -23,7 +23,8 @@ const Van = () => {
   const getVans = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/van', null) 
+        const id =localStorage.getItem('companyId');
+        const {data} = await API.get(`/van/company/${id}`, null) 
         console.log(data);
         if(data.status){  
            setVans(data.value); 
@@ -54,6 +55,7 @@ const Van = () => {
       console.log(data);
       if(data.status){  
         getVans();
+        setCode(null);setName(null);
          toast.success(data.msg);  
          setitemId(0);
       } else{

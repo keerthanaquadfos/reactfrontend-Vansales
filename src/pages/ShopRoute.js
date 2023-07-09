@@ -81,6 +81,9 @@ const ShopRoute = () => {
       const {data} = await API.delete('/route/'+itemId) 
       console.log(data);
       if(data.status){  
+        setCode(null);
+        setDescription(null);
+        setName(null);
         toast.success(data.msg); 
         setitemId(0);
         getRoutes();

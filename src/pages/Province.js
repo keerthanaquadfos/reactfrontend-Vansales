@@ -85,6 +85,8 @@ const Province = () => {
         getProvinces();
          toast.success(data.msg);  
          setitemId(0);
+         setCode(null);
+         setName(null);
       } else{
           toast.error(data.msg); 
       }

@@ -93,6 +93,11 @@ const Company = () => {
       setLoading(true);
       const { data } = await API.delete('/company/' + itemId);
       if (data.status) {
+        setName('');
+        setEmail('');
+        setContact('');
+        setMaxUsers(1);
+        setPassword('');
         toast.success(data.msg);
         setitemId(0);
         getCompanies();

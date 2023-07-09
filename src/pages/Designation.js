@@ -71,6 +71,7 @@ const Designation = () => {
       setLoading(true);     
       const {data} = itemId>0 ?  await API.put('/designation/'+itemId, { name:name})   : await API.post('/designation', {name:name})  
       if(data.status){  
+        setName(null);
          getDepartments();
          toast.success(data.msg);  
          setitemId(0);

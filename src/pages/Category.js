@@ -54,6 +54,8 @@ const Category = () => {
       const req = {code:code, name:name , companyId:id};
       const {data} = itemId>0 ?  await API.put('/category/'+itemId,req)   : await API.post('/category', req)  
       if(data.status){  
+        setCode(null); 
+        setName(null);
          getCategories();
          toast.success(data.msg);  
          setitemId(0);

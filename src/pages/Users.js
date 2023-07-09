@@ -86,7 +86,8 @@ const Users = () => {
     try{
         setLoading(true);     
         const {data} = await API.get('/general/roles', null)  
-        if(data.status){  
+        if(data.status){
+          setName()
             setRoleId(data.value[0].id);
             setRoles(data.value); 
         } else{
@@ -154,6 +155,9 @@ const Users = () => {
       const {data} = itemId>0 ?  await API.put('/user/'+itemId, reqData)  
        : await API.post('/user', reqData)  
       if(data.status){  
+        setName(null);
+        setEmail(null);
+        setPassword(null);
         getUsers();
          toast.success(data.msg);  
          setitemId(0);

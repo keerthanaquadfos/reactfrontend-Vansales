@@ -70,9 +70,9 @@ const BillType = () => {
         return;
       }
       setLoading(true);     
-      const {data} = itemId>0 ?  await API.put('/billtype/'+itemId, { name:name})   : await API.post('/billtype', {name:name}) 
-      console.log(data);
-      if(data.status){  
+      const {data} = itemId>0 ?  await API.put('/billtype/'+itemId, { name:name})   : await API.post('/billtype', {name:name})  
+      if(data.status){
+        setName("");
         getBillTypes();
          toast.success(data.msg);  
          setitemId(0);
