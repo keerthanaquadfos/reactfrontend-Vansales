@@ -34,8 +34,9 @@ const Shop = () => {
   
   const getShops = async ()=> {
     try{
-        setLoading(true);     
-        const {data} = await API.get('/shop', null) 
+        setLoading(true);    
+        const id = localStorage.getItem('companyId'); 
+        const {data} = await API.get(`/shop/company/${id}`, null) 
         console.log(data);
         if(data.status){  
             setShops(data.value); 
@@ -90,7 +91,8 @@ const Shop = () => {
   const getRoutes = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/route', null)  
+        const id = localStorage.getItem('companyId');
+        const {data} = await API.get(`/route/company/${id}`, null)  
         if(data.status){  
             setRoutes(data.value); 
         } else{
