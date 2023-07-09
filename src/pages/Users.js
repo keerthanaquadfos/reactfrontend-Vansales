@@ -35,7 +35,8 @@ const Users = () => {
   const getDepartments = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/general/departments', null)  
+        const id = localStorage.getItem('companyId');
+        const {data} = await API.get(`/department/company/${id}`, null)  
         if(data.status){  
           if( data.value.length<=0){
             toast.warning('Please add department first!');
@@ -60,7 +61,8 @@ const Users = () => {
   const getDesignations = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/general/designations', null)  
+        const id = localStorage.getItem('companyId');
+        const {data} = await API.get(`/designation/company/${id}`, null)  
         if(data.status){  
           if( data.value.length<=0){
             toast.warning('Please add designation first!');
