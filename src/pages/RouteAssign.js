@@ -131,7 +131,7 @@ const RouteAssign = () => {
     }else{
       setVanId(van[0].id);   
       setRouteId(routes[0].id);
-      setUserId(itemd.userId);
+      setUserId(users[0].id);
       setCompanyId(localStorage.getItem('companyId'));  
     }
   }
