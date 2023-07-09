@@ -22,7 +22,8 @@ const Department = () => {
   const getDepartments = async ()=> {
     try{
         setLoading(true);     
-        const {data} = await API.get('/department', null) 
+        const id = localStorage.getItem('companyId');
+        const {data} = await API.get(`/department/company/${id}`, null) 
         console.log(data);
         if(data.status){  
             setDepartments(data.value); 
