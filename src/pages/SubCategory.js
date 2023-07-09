@@ -46,7 +46,7 @@ const SubCategory = () => {
     try{
         setLoading(true);     
         const id =localStorage.getItem('companyId');
-        const {data} = await API.get(`/subcategory/companyId/${id}`, null)  
+        const {data} = await API.get(`/subcategory/company/${id}`, null)  
         if(data.status){  
             setSubCategories(data.value); 
         } else{
