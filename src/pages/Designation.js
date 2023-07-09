@@ -70,7 +70,8 @@ const Designation = () => {
         return;
       }
       setLoading(true);     
-      const {data} = itemId>0 ?  await API.put('/designation/'+itemId, { name:name})   : await API.post('/designation', {name:name})  
+      const id = localStorage.getItem('companyId');
+      const {data} = itemId>0 ?  await API.put('/designation/'+itemId, { name:name, companyId:id})   : await API.post('/designation', {name:name,companyId:id})  
       if(data.status){  
         setName(null);
          getDepartments();
