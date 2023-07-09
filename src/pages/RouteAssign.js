@@ -118,8 +118,7 @@ const RouteAssign = () => {
     }finally{
       setLoading(false);   
     }
-  }
- 
+  } 
 
   const setItemToEdit = (itemd)=>{
     if(itemd.id>0){

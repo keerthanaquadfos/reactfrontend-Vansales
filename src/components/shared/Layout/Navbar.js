@@ -58,8 +58,7 @@ function Navbar() {
               <i className="bx bx-cog me-2" />
               <span className="align-middle">Settings</span>
             </a>
-          </li>
-          
+          </li>          
           <li>
             <div className="dropdown-divider" />
           </li>
@@ -76,5 +75,4 @@ function Navbar() {
 </nav>
  </>
 }
-
 export default Navbar
