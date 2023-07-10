@@ -9,6 +9,12 @@ export const userLogin = createAsyncThunk(
             const {data} = await API.post('/user/authenticate', request)
             debugger;
             if(data.status){
+                if(data.value.user.roleId >2){
+                    var mode = data.value.user.roleId===3 ? 'store keeper' : 'sales staff';
+                    var msg ='You are tring to sign in as '+ mode +', please use admin/super-admin privillage to use this resource';
+                    toast.error(msg);
+                    return rejectWithValue(msg)
+                }
                 localStorage.setItem('userId',data.value.user.id);
                 localStorage.setItem('token',data.value.token);
                 localStorage.setItem('companyId',data.value.user.companyId);
