@@ -122,6 +122,8 @@ const Complaint = () => {
                   <td>Product</td>   
                   <td>Scheduled</td>   
                   <td>Remarks</td>   
+                  <td>Product Serial No</td>   
+                  <td>Staff Remark</td>   
                   <td>Status</td>    
                 </tr> 
             </thead>
@@ -132,8 +134,10 @@ const Complaint = () => {
                            <td>{data.complaintType.name}</td>
                            <td>{data.shop.name}</td>
                            <td>{data.product.name}</td>
-                           <td>{ new Date(data.scheduledAt).toLocaleDateString()}</td>
+                           <td>{ new Date(data.scheduledAt).toLocaleTimeString()}</td>
                            <td>{data.remarks}</td>
+                           <td>{data.productSerial}</td>
+                           <td>{data.finalRemarks}</td>
                            <td title='Status will be open, re-scheduled and closed'><span className='badge bg-info'>{data.status === 1 ? 'Open' : data.status ===2 ? 'Re scheduled' : 'Closed'}</span></td>
                            
                         </tr>) 
