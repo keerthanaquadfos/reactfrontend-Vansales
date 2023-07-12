@@ -134,7 +134,7 @@ const Complaint = () => {
                            <td>{data.complaintType.name}</td>
                            <td>{data.shop.name}</td>
                            <td>{data.product.name}</td>
-                           <td>{ new Date(data.scheduledAt).toLocaleTimeString()}</td>
+                           <td>{ new Date(data.scheduledAt).toLocaleDateString()}</td>
                            <td>{data.remarks}</td>
                            <td>{data.productSerial}</td>
                            <td>{data.finalRemarks}</td>
