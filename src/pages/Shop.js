@@ -221,17 +221,16 @@ const Shop = () => {
                 <table className="table">
             <thead>
                 <tr>  
-                  <td>BillType</td>   
-                  <td>Code</td> 
-                  <td>TRN</td> 
-                  <td>Company</td>     
-                  <td>Name</td>   
-                  <td>Email</td>   
-                  <td>Contact</td>   
-                  <td>Address</td>   
-                  <td>Province</td>   
-                  <td>Route</td>   
-                  <td>Actions</td>
+                <td>Code</td> 
+                <td>Name</td>   
+                <td>Address</td>   
+                <td>BillType</td>  
+                <td>Contact</td>   
+                <td>Email</td> 
+                <td>Province</td>   
+                <td>TRN</td>     
+                <td>Route</td> 
+                <td>Actions</td>
                 </tr> 
             </thead>
             <tbody className="table-border-bottom-0"> 
@@ -239,17 +238,17 @@ const Shop = () => {
                 shops.map((data,index) => {
                   console.log(data.name);
                   console.log(data.route.name)
-                        return(<tr key={data.id}> 
-                           <td>{data.billtype.name}</td>
-                           <td>{data.code}</td>
-                           <td>{data.trn}</td>
-                           <td>{data.company.name}</td>
+                        return(<tr key={data.id}>  
+                           <td>{data.code}</td> 
                            <td>{data.name}</td>
-                           <td>{data.email}</td>
-                           <td>{data.contact}</td>
                            <td>{data.address}</td>
+                           <td>{data.billtype.name}</td>
+                           <td>{data.contact}</td>
+                           <td>{data.email}</td> 
                            <td>{data.province.name}</td>
-                           <td>{data.route.name}</td>
+                           <td>{data.trn}</td> 
+                           <td>{data.route.name}</td> 
+                         
                             <td>
                                 <div className="">
                                     <Link onClick={()=>modalShow(data)} style={{width:100}}><i className="bx bx-edit-alt me-2" title="Edit"></i></Link>

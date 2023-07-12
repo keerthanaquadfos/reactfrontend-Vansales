@@ -22,9 +22,9 @@ const Attendance = () => {
   //const modelDeleteShow = (id) =>{ setDelShow(true); setitemId(id)  }
   const getAttendances = async ()=> {
     try{
-        setLoading(true);     
-        const {data} = await API.get('/attendance', null) 
-        console.log(data);
+        setLoading(true);  
+        const id =20;// localStorage.getItem('companyId');
+        const {data} = await API.get(`/attendance/company/${id}`, null)  
         if(data.status){  
             setAttendances(data.value); 
         } else{
@@ -118,10 +118,9 @@ const Attendance = () => {
             <thead>
                 <tr>  
                   <td>Employee</td>   
+                  <td>Date</td>      
                   <td>Check In</td>   
-                  <td>Check Out</td>    
-                  <td>In Location</td>   
-                  <td>Out Location</td>   
+                  <td>Check Out</td>   
                   <td>Starting Meter</td>   
                   <td>Ending Meter</td>  
                 </tr> 
@@ -130,11 +129,10 @@ const Attendance = () => {
                 { attendances ?
                 attendances.map((data,index) => {
                         return(<tr key={data.id}> 
-                           <td>{data.useraccount.email}</td>
+                           <td>{data.useraccount.name.toUpperCase()}</td>
                            <td>{new Date(data.checkIn).toLocaleDateString()}</td>
-                           <td>{ data.checkOut!=null ? new Date(data.checkIn).toLocaleDateString() : "Not available"}</td>
-                           <td>{data.checkinLat}, {data.checkinLong}</td> 
-                           <td>{ data.checkOut!=null ? (data.checkOutLat , data.checkOutLong) : 'Not available' }</td> 
+                           <td>{ data.checkInTime!=null ? data.checkInTime : "Not available"}</td>
+                           <td>{ data.checkOutTime!=null ? data.checkOutTime : "Not available"}</td> 
                            <td>{data.odmeter !=null ? data.odmeter : 'Not Available'}</td>
                            <td>{data.odmeterEnd  !=null ? data.odmeterEnd : 'Not Available'}</td>
                         </tr>) 

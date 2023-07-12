@@ -242,7 +242,7 @@ const RouteAssign = () => {
       <Modal show={show} onHide={modalClose}> 
         <Modal.Header closeButton>
           <Modal.Title>
-           Department
+           Assign Route
           </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
@@ -262,7 +262,7 @@ const RouteAssign = () => {
       <Modal show={delShow} onHide={modalDelClose}> 
         <Modal.Header closeButton>
           <Modal.Title>
-          Department
+          Assign Route 
           </Modal.Title>
         </Modal.Header>
         <Modal.Body> 
