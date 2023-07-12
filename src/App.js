@@ -27,6 +27,7 @@ import Country from './pages/Country';
 import Province from './pages/Province';
 import RouteAssign from './pages/RouteAssign';
 import PurchaseReturn from './pages/PurchaseReturn';
+import Payments from './pages/Payments';
 function App() {
  
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="/users"  element={<AdminRoute><Users/></AdminRoute>} />
           <Route path="/department"  element={<AdminRoute><Department/></AdminRoute>} />
           <Route path="/designation"  element={<AdminRoute><Designation/></AdminRoute>} />
+          <Route path="/payments"  element={<AdminRoute><Payments/></AdminRoute>} />
           <Route path="/bill-type"  element={<ProtectedRoute><BillType/></ProtectedRoute>} />
           <Route path="/login" element={<Login/>}  /> 
         </Routes> 
